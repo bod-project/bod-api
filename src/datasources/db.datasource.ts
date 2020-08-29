@@ -5,7 +5,9 @@ const config = {
   name: 'db',
   connector: 'postgresql',
   url: process.env.DATABASE_URL,
-  ssl: true
+  ssl: {
+    rejectUnauthorized: false
+  }
 };
 
 // Observe application's life cycle to disconnect the datasource when
