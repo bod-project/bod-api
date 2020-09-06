@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany} from '@loopback/repository';
+import {SessionItem} from './session-item.model';
 
 @model()
 export class Session extends Entity {
@@ -27,6 +28,8 @@ export class Session extends Entity {
   })
   order: number;
 
+  @hasMany(() => SessionItem)
+  sessionItems: SessionItem[];
 
   constructor(data?: Partial<Session>) {
     super(data);

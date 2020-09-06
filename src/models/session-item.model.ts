@@ -53,6 +53,11 @@ export class SessionItem extends Entity {
   @belongsTo(() => Exercise)
   exerciseId: number;
 
+  @property({
+    type: 'number',
+  })
+  sessionId?: number;
+
   constructor(data?: Partial<SessionItem>) {
     super(data);
   }
