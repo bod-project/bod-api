@@ -1,4 +1,4 @@
-import {Entity, model, property, hasMany} from '@loopback/repository';
+import {Entity, hasMany, model, property} from '@loopback/repository';
 import {SessionItem} from './session-item.model';
 
 @model()
@@ -15,12 +15,6 @@ export class Session extends Entity {
     required: true,
   })
   name: string;
-
-  @property({
-    type: 'array',
-    itemType: 'number',
-  })
-  items?: number[];
 
   @property({
     type: 'number',
