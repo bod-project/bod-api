@@ -25,6 +25,11 @@ export class Session extends Entity {
   @hasMany(() => SessionItem)
   sessionItems: SessionItem[];
 
+  @property({
+    type: 'number',
+  })
+  weekId?: number;
+
   constructor(data?: Partial<Session>) {
     super(data);
   }
