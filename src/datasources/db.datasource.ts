@@ -5,8 +5,8 @@ import {juggler} from '@loopback/repository';
 const config = {
   name: "db",
   connector: "postgresql",
-  url: process.env.DATABASE_URL
-  /* "ssl": { "rejectUnauthorized": true } */
+  url: process.env.DATABASE_URL,
+  ssl: {rejectUnauthorized: false}
 }
 
 // Observe application's life cycle to disconnect the datasource when
