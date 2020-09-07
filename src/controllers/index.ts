@@ -6,3 +6,5 @@ export * from './session.controller';
 export * from './session-session-item.controller';
 export * from './week.controller';
 export * from './week-session.controller';
+export * from './program.controller';
+export * from './program-week.controller';
