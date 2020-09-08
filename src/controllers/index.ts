@@ -15,3 +15,6 @@ export * from './session-item-statistic-set-statistic.controller';
 export * from './session-statistic.controller';
 export * from './session-statistic-session.controller';
 export * from './session-statistic-session-item-statistic.controller';
+export * from './week-statistic.controller';
+export * from './week-statistic-week.controller';
+export * from './week-statistic-session-statistic.controller';
