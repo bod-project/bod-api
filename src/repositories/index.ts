@@ -7,3 +7,4 @@ export * from './set-statistic.repository';
 export * from './session-item-statistic.repository';
 export * from './session-statistic.repository';
 export * from './week-statistic.repository';
+export * from './program-statistic.repository';
