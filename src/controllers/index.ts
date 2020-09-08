@@ -9,3 +9,6 @@ export * from './week-session.controller';
 export * from './program.controller';
 export * from './program-week.controller';
 export * from './set-statistic.controller';
+export * from './session-item-statistic.controller';
+export * from './session-item-statistic-session-item.controller';
+export * from './session-item-statistic-set-statistic.controller';

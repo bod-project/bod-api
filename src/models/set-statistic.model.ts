@@ -33,6 +33,10 @@ export class SetStatistic extends Entity {
   })
   weightUnit: string;
 
+  @property({
+    type: 'number',
+  })
+  sessionItemStatisticId?: number;
 
   constructor(data?: Partial<SetStatistic>) {
     super(data);
