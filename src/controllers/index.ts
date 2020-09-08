@@ -8,3 +8,4 @@ export * from './week.controller';
 export * from './week-session.controller';
 export * from './program.controller';
 export * from './program-week.controller';
+export * from './set-statistic.controller';
