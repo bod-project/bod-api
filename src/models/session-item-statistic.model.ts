@@ -29,6 +29,11 @@ export class SessionItemStatistic extends Entity {
   @hasMany(() => SetStatistic)
   setStatistics: SetStatistic[];
 
+  @property({
+    type: 'number',
+  })
+  sessionStatisticId?: number;
+
   constructor(data?: Partial<SessionItemStatistic>) {
     super(data);
   }

@@ -5,3 +5,4 @@ export * from './week.repository';
 export * from './program.repository';
 export * from './set-statistic.repository';
 export * from './session-item-statistic.repository';
+export * from './session-statistic.repository';
