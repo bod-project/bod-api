@@ -18,3 +18,6 @@ export * from './session-statistic-session-item-statistic.controller';
 export * from './week-statistic.controller';
 export * from './week-statistic-week.controller';
 export * from './week-statistic-session-statistic.controller';
+export * from './program-statistic.controller';
+export * from './program-statistic-program.controller';
+export * from './program-statistic-week-statistic.controller';

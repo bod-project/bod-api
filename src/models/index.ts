@@ -7,3 +7,4 @@ export * from './set-statistic.model';
 export * from './session-item-statistic.model';
 export * from './session-statistic.model';
 export * from './week-statistic.model';
+export * from './program-statistic.model';

@@ -17,6 +17,11 @@ export class WeekStatistic extends Entity {
   @hasMany(() => SessionStatistic)
   sessionStatistics: SessionStatistic[];
 
+  @property({
+    type: 'number',
+  })
+  programStatisticId?: number;
+
   constructor(data?: Partial<WeekStatistic>) {
     super(data);
   }
