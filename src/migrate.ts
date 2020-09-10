@@ -1,4 +1,6 @@
 import {BodApiApplication} from './application';
+const dotenv = require('dotenv').config();
+// console.log("Using DB: " + process.env.DATABASE_URL)
 
 export async function migrate(args: string[]) {
   const existingSchema = args.includes('--rebuild') ? 'drop' : 'alter';
