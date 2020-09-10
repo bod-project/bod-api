@@ -1,4 +1,4 @@
-import {Entity, model, property, belongsTo} from '@loopback/repository';
+import {belongsTo, Entity, model, property} from '@loopback/repository';
 import {Exercise} from './exercise.model';
 
 @model()
@@ -33,10 +33,15 @@ export class SessionItem extends Entity {
   sets: number;
 
   @property({
-    type: 'string',
+    type: 'number',
     required: true,
   })
-  weight: string;
+  weight: number;
+
+  @property({
+    type: 'string'
+  })
+  weightUnit?: string;
 
   @property({
     type: 'string',
