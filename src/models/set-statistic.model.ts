@@ -28,12 +28,6 @@ export class SetStatistic extends Entity {
   weight: number;
 
   @property({
-    type: 'string',
-    required: true,
-  })
-  weightUnit: string;
-
-  @property({
     type: 'number',
   })
   sessionItemStatisticId?: number;
