@@ -1,4 +1,4 @@
-import {belongsTo, Entity, model, property, hasOne} from '@loopback/repository';
+import {belongsTo, Entity, hasOne, model, property} from '@loopback/repository';
 import {Exercise} from './exercise.model';
 import {SessionItemStatistic} from './session-item-statistic.model';
 
@@ -55,6 +55,11 @@ export class SessionItem extends Entity {
     required: true,
   })
   tempo: string;
+
+  @property({
+    type: 'number',
+  })
+  order: number;
 
   @belongsTo(() => Exercise)
   exerciseId: number;
