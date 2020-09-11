@@ -1,5 +1,6 @@
-import {Entity, model, property, hasMany} from '@loopback/repository';
+import {Entity, model, property, hasMany, hasOne} from '@loopback/repository';
 import {Week} from './week.model';
+import {ProgramStatistic} from './program-statistic.model';
 
 @model()
 export class Program extends Entity {
@@ -18,6 +19,9 @@ export class Program extends Entity {
 
   @hasMany(() => Week)
   weeks: Week[];
+
+  @hasOne(() => ProgramStatistic)
+  programStatistic: ProgramStatistic;
 
   constructor(data?: Partial<Program>) {
     super(data);

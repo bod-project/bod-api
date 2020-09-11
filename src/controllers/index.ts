@@ -23,3 +23,7 @@ export * from './program-statistic-program.controller';
 export * from './program-statistic-week-statistic.controller';
 export * from './max-attempt-item.controller';
 export * from './max-attempt-item-exercise.controller';
+export * from './session-item-session-item-statistic.controller';
+export * from './session-session-statistic.controller';
+export * from './program-program-statistic.controller';
+export * from './week-week-statistic.controller';
