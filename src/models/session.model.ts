@@ -1,5 +1,6 @@
-import {Entity, hasMany, model, property} from '@loopback/repository';
+import {Entity, hasMany, model, property, hasOne} from '@loopback/repository';
 import {SessionItem} from './session-item.model';
+import {SessionStatistic} from './session-statistic.model';
 
 @model()
 export class Session extends Entity {
@@ -29,6 +30,9 @@ export class Session extends Entity {
     type: 'number',
   })
   weekId?: number;
+
+  @hasOne(() => SessionStatistic)
+  sessionStatistic: SessionStatistic;
 
   constructor(data?: Partial<Session>) {
     super(data);
