@@ -23,7 +23,7 @@ interface Exercise {
 
 ```
 
-```
+```ts
 interface SessionItem {
   id?: number;
   exerciseId: number;
@@ -126,7 +126,7 @@ interface Playlist {
 }
 ```
 
-```
+```ts
 interface MaxAttemptItem {
   id?: number;
   exercise: number;
