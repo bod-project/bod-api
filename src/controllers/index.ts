@@ -27,3 +27,4 @@ export * from './session-item-session-item-statistic.controller';
 export * from './session-session-statistic.controller';
 export * from './program-program-statistic.controller';
 export * from './week-week-statistic.controller';
+export * from './user.controller';
