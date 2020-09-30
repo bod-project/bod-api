@@ -18,7 +18,11 @@ import {
 } from '@loopback/rest';
 import {Exercise} from '../models';
 import {ExerciseRepository} from '../repositories';
+// ------------- JWT Authentication ------------
+import {authenticate} from '@loopback/authentication';
+// ---------------------------------------------
 
+@authenticate('jwt') // <---- Apply the @authenticate decorator at the class level
 export class ExerciseController {
   constructor(
     @repository(ExerciseRepository)
