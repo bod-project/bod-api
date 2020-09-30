@@ -1,4 +1,4 @@
-import {Entity, model, property, belongsTo, hasMany} from '@loopback/repository';
+import {belongsTo, Entity, hasMany, model, property} from '@loopback/repository';
 import {SessionItem} from './session-item.model';
 import {SetStatistic} from './set-statistic.model';
 
@@ -19,9 +19,8 @@ export class SessionItemStatistic extends Entity {
 
   @property({
     type: 'string',
-    required: true,
   })
-  notes: string;
+  notes?: string;
 
   @belongsTo(() => SessionItem)
   sessionItemId: number;
