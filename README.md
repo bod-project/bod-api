@@ -119,14 +119,6 @@ interface ProgramStatistic {
 ```
 
 ```ts
-interface Playlist {
-  id?: number;
-  url: string; // https://www.youtube.com/playlist?list=PLu0SKb668nMfYcyc_Mpv1tcywXh2AJapj
-  week: number; // Week
-}
-```
-
-```ts
 interface MaxAttemptItem {
   id?: number;
   exercise: number;
