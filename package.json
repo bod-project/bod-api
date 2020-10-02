@@ -46,23 +46,25 @@
     "!*/__tests__"
   ],
   "dependencies": {
-    "@loopback/boot": "^2.4.1",
-    "@loopback/core": "^2.9.3",
-    "@loopback/repository": "^2.11.0",
-    "@loopback/rest": "^6.0.0",
-    "@loopback/rest-explorer": "^2.2.8",
-    "@loopback/service-proxy": "^2.3.6",
+    "@loopback/authentication": "^7.0.1",
+    "@loopback/authentication-jwt": "^0.7.1",
+    "@loopback/boot": "^2.5.1",
+    "@loopback/core": "^2.10.1",
+    "@loopback/repository": "^2.11.2",
+    "@loopback/rest": "^6.2.0",
+    "@loopback/rest-explorer": "^2.2.10",
+    "@loopback/service-proxy": "^2.3.8",
     "dotenv": "^8.2.0",
-    "loopback-connector-postgresql": "^5.0.2",
+    "loopback-connector-postgresql": "^5.1.0",
     "tslib": "^2.0.0"
   },
   "devDependencies": {
-    "@loopback/build": "^6.2.0",
+    "@loopback/build": "^6.2.4",
+    "@loopback/eslint-config": "^9.0.2",
+    "@loopback/testlab": "^3.2.6",
+    "@types/node": "^10.17.35",
+    "eslint": "^7.10.0",
     "source-map-support": "^0.5.19",
-    "@loopback/testlab": "^3.2.2",
-    "@types/node": "^10.17.28",
-    "@loopback/eslint-config": "^9.0.0",
-    "eslint": "^7.6.0",
     "typescript": "~3.9.7"
   }
 }
