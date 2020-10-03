@@ -1,10 +1,3 @@
-// ------ JWT authentication---------
-import {AuthenticationComponent} from '@loopback/authentication';
-import {
-  JWTAuthenticationComponent,
-
-  UserServiceBindings
-} from '@loopback/authentication-jwt';
 import {BootMixin} from '@loopback/boot';
 import {ApplicationConfig} from '@loopback/core';
 import {RepositoryMixin} from '@loopback/repository';
@@ -17,6 +10,15 @@ import {ServiceMixin} from '@loopback/service-proxy';
 import path from 'path';
 import {DbDataSource} from './datasources';
 import {MySequence} from './sequence';
+// ------ JWT authentication---------
+import {AuthenticationComponent} from '@loopback/authentication';
+import { 
+  JWTAuthenticationComponent, 
+  UserRepository, 
+  UserServiceBindings 
+} from '@loopback/authentication-jwt';
+import {AppUserService} from './services/app-user-service'
+import {AppUserRepository, AppUserCredentialsRepository} from './repositories'
 // ----------------------------------
 
 export {ApplicationConfig};
@@ -57,6 +59,13 @@ export class BodApiApplication extends BootMixin(
     this.component(JWTAuthenticationComponent);
     // Bind datasource
     this.dataSource(DbDataSource, UserServiceBindings.DATASOURCE_NAME);
+    // Bind user service
+    this.bind(UserServiceBindings.USER_SERVICE).toClass(AppUserService),
+    // Bind user and credentials repository
+    this.bind(UserServiceBindings.USER_REPOSITORY).toClass( AppUserRepository),
+    this.bind(UserServiceBindings.USER_CREDENTIALS_REPOSITORY).toClass(
+      AppUserCredentialsRepository,
+    )
     // ---------------------------------
   }
 }

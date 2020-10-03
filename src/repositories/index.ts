@@ -9,3 +9,5 @@ export * from './session-statistic.repository';
 export * from './week-statistic.repository';
 export * from './program-statistic.repository';
 export * from './max-attempt-item.repository';
+export * from './app-user.repository'
+export * from './app-user-credentials.repository';
