@@ -11,6 +11,12 @@ export class WeekStatistic extends Entity {
   })
   id?: number;
 
+  @property({
+    type: 'string',
+    required: false,
+  })
+  playlist?: string;
+
   @belongsTo(() => Week)
   weekId: number;
 
