@@ -1,4 +1,4 @@
-import {Entity, model, property, hasMany, hasOne} from '@loopback/repository';
+import {Entity, hasMany, hasOne, model, property} from '@loopback/repository';
 import {Session} from './session.model';
 import {WeekStatistic} from './week-statistic.model';
 
@@ -24,6 +24,12 @@ export class Week extends Entity {
     type: 'number',
   })
   programId?: number;
+
+  // manually defined without an official relationship
+  @property({
+    type: 'number',
+  })
+  weekStatisticId?: number;
 
   @hasOne(() => WeekStatistic)
   weekStatistic: WeekStatistic;
