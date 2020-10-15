@@ -46,14 +46,14 @@
     "!*/__tests__"
   ],
   "dependencies": {
-    "@loopback/authentication": "^7.0.2",
-    "@loopback/authentication-passport": "^3.0.2",
-    "@loopback/boot": "^2.4.1",
-    "@loopback/core": "^2.9.3",
-    "@loopback/repository": "^2.11.0",
-    "@loopback/rest": "^6.0.0",
-    "@loopback/rest-explorer": "^2.2.8",
-    "@loopback/service-proxy": "^2.3.6",
+    "@loopback/authentication": "^6.0.0",
+    "@loopback/authentication-passport": "^2.1.12",
+    "@loopback/boot": "^2.5.0",
+    "@loopback/core": "^2.9.4",
+    "@loopback/repository": "^2.11.1",
+    "@loopback/rest": "^6.1.0",
+    "@loopback/rest-explorer": "^2.2.9",
+    "@loopback/service-proxy": "^2.3.7",
     "@types/passport": "^1.0.4",
     "@types/passport-google-oauth2": "^0.1.3",
     "axios": "^0.20.0",
@@ -64,12 +64,12 @@
     "tslib": "^2.0.0"
   },
   "devDependencies": {
-    "@loopback/build": "^6.2.0",
+    "@loopback/build": "^6.2.1",
     "source-map-support": "^0.5.19",
-    "@loopback/testlab": "^3.2.2",
+    "@loopback/testlab": "^3.2.3",
     "@types/node": "^10.17.28",
-    "@loopback/eslint-config": "^9.0.0",
-    "eslint": "^7.6.0",
+    "@loopback/eslint-config": "^9.0.1",
+    "eslint": "^7.7.0",
     "typescript": "~3.9.7"
   }
 }
