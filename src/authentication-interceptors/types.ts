@@ -22,10 +22,10 @@ export function oAuth2InterceptExpressMiddleware() {
     composeInterceptors(
       'passport-init-mw',
       'passport-session-mw',
-      'passport-facebook',
+      // 'passport-facebook',
       'passport-oauth2',
       'passport-google',
-      'passport-twitter',
+      // 'passport-twitter',
       'set-session-user',
     ),
   );

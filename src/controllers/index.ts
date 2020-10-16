@@ -1,7 +1,6 @@
 export * from './exercise.controller';
 export * from './max-attempt-item-exercise.controller';
 export * from './max-attempt-item.controller';
-export * from './oauth2.controller';
 export * from './ping.controller';
 export * from './program-program-statistic.controller';
 export * from './program-statistic-program.controller';
@@ -29,3 +28,4 @@ export * from './week-statistic-week.controller';
 export * from './week-statistic.controller';
 export * from './week-week-statistic.controller';
 export * from './week.controller';
+
