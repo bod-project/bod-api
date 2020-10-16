@@ -21,6 +21,28 @@ import {AppUserService} from './services/app-user-service'
 import {AppUserRepository, AppUserCredentialsRepository} from './repositories'
 // ----------------------------------
 
+// --- Authentication ----
+import {createBindingFromClass} from '@loopback/core';
+import {toInterceptor} from '@loopback/rest';
+import {AuthenticationComponent} from '@loopback/authentication'
+import {
+  CustomOauth2Interceptor, 
+  GoogleOauthInterceptor, SessionAuth
+} from './authentication-interceptors';
+import {
+  Oauth2AuthStrategy, 
+  GoogleOauth2Authentication
+} from './authentication-strategies';
+import {
+  CustomOauth2, 
+  CustomOauth2ExpressMiddleware, 
+  GoogleOauth, 
+  GoogleOauth2ExpressMiddleware
+} from './authentication-strategy-providers';
+import {PassportUserIdentityService, UserServiceBindings} from './services'
+import passport from 'passport';
+// ----------------------
+
 export {ApplicationConfig};
 
 export class BodApiApplication extends BootMixin(
@@ -31,6 +53,24 @@ export class BodApiApplication extends BootMixin(
 
     // Set up the custom sequence
     this.sequence(MySequence);
+
+    // ---- Authentication ----
+    let oAuth2Providers = require('../oauth2-providers.json');
+    this.setUpBindings();
+    this.component(AuthenticationComponent);
+
+    this.bind('googleOAuth2Options').to(oAuth2Providers['google-login']);
+    this.bind('customOAuth2Options').to(oAuth2Providers['oauth2']);
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    passport.serializeUser(function (user: any, done) {
+      done(null, user);
+    });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    passport.deserializeUser(function (user: any, done) {
+      done(null, user);
+    });
+    // -------------------------
 
     // Set up default home page
     this.static('/', path.join(__dirname, '../public'));
@@ -68,4 +108,34 @@ export class BodApiApplication extends BootMixin(
     )
     // ---------------------------------
   }
+
+  setUpBindings(): void {
+    this.bind(UserServiceBindings.PASSPORT_USER_IDENTITY_SERVICE).toClass(
+      PassportUserIdentityService,
+    );
+    // passport strategies
+    this.add(createBindingFromClass(GoogleOauth, {key: 'googleStrategy'}));
+    this.add(createBindingFromClass(CustomOauth2, {key: 'oauth2Strategy'}));
+    // passport express middleware
+    this.add(
+      createBindingFromClass(GoogleOauth2ExpressMiddleware, {
+        key: 'googleStrategyMiddleware',
+      }),
+    );
+    this.add(
+      createBindingFromClass(CustomOauth2ExpressMiddleware, {
+        key: 'oauth2StrategyMiddleware',
+      }),
+    );
+    // LoopBack 4 style authentication strategies
+    this.add(createBindingFromClass(GoogleOauth2Authentication));
+    this.add(createBindingFromClass(Oauth2AuthStrategy));
+    // Express style middleware interceptors
+    this.bind('passport-init-mw').to(toInterceptor(passport.initialize()));
+    this.bind('passport-session-mw').to(toInterceptor(passport.session()));
+    this.bind('passport-google').toProvider(GoogleOauthInterceptor);
+    this.bind('passport-oauth2').toProvider(CustomOauth2Interceptor);
+    this.bind('set-session-user').toProvider(SessionAuth);
+  }
+
 }
