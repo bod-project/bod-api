@@ -42,6 +42,8 @@ import {
 import {PassportUserIdentityService, UserServiceBindings} from './services'
 import passport from 'passport';
 // ----------------------
+// Added CrudRestComponent for User controller 
+import {CrudRestComponent} from '@loopback/rest-crud';
 
 export {ApplicationConfig};
 
@@ -58,6 +60,7 @@ export class BodApiApplication extends BootMixin(
     let oAuth2Providers = require('../oauth2-providers.json');
     this.setUpBindings();
     this.component(AuthenticationComponent);
+    this.component(CrudRestComponent);
 
     this.bind('googleOAuth2Options').to(oAuth2Providers['google-login']);
     this.bind('customOAuth2Options').to(oAuth2Providers['oauth2']);
