@@ -31,6 +31,8 @@
     "openapi-spec": "node ./dist/openapi-spec",
     "prestart": "npm run build",
     "start": "node -r source-map-support/register .",
+    "predev": "npm run build",
+    "dev": "node -r source-map-support/register -r dotenv/config .",
     "clean": "lb-clean dist *.tsbuildinfo .eslintcache",
     "heroku-postbuild": "npm run build"
   },
