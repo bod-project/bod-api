@@ -24,25 +24,26 @@ import {AppUserRepository, AppUserCredentialsRepository} from './repositories'
 // --- Authentication ----
 import {createBindingFromClass} from '@loopback/core';
 import {toInterceptor} from '@loopback/rest';
-import {AuthenticationComponent} from '@loopback/authentication'
+import {AuthenticationComponent} from '@loopback/authentication';
 import {
-  CustomOauth2Interceptor, 
-  GoogleOauthInterceptor, SessionAuth
+  CustomOauth2Interceptor,
+  GoogleOauthInterceptor,
+  SessionAuth,
 } from './authentication-interceptors';
 import {
-  Oauth2AuthStrategy, 
-  GoogleOauth2Authentication
+  Oauth2AuthStrategy,
+  GoogleOauth2Authentication,
 } from './authentication-strategies';
 import {
-  CustomOauth2, 
-  CustomOauth2ExpressMiddleware, 
-  GoogleOauth, 
-  GoogleOauth2ExpressMiddleware
+  CustomOauth2,
+  CustomOauth2ExpressMiddleware,
+  GoogleOauth,
+  GoogleOauth2ExpressMiddleware,
 } from './authentication-strategy-providers';
-import {PassportUserIdentityService, UserServiceBindings} from './services'
+import {PassportUserIdentityService, UserServiceBindings} from './services';
 import passport from 'passport';
 // ----------------------
-// Added CrudRestComponent for User controller 
+// Added CrudRestComponent for User controller
 import {CrudRestComponent} from '@loopback/rest-crud';
 
 export {ApplicationConfig};
@@ -57,7 +58,12 @@ export class BodApiApplication extends BootMixin(
     this.sequence(MySequence);
 
     // ---- Authentication ----
+
+    // get oAuth configuration
     let oAuth2Providers = require('../oauth2-providers.json');
+    oAuth2Providers['google-login'].clientID = process.env.CLIENT_ID;
+    oAuth2Providers['google-login'].clientSecret = process.env.CLIENT_SECRET;
+
     this.setUpBindings();
     this.component(AuthenticationComponent);
     this.component(CrudRestComponent);
@@ -140,5 +146,4 @@ export class BodApiApplication extends BootMixin(
     this.bind('passport-oauth2').toProvider(CustomOauth2Interceptor);
     this.bind('set-session-user').toProvider(SessionAuth);
   }
-
 }

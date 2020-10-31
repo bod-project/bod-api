@@ -1,6 +1,4 @@
 import {ApplicationConfig, BodApiApplication} from './application';
-const dotenv = require('dotenv').config();
-// console.log("Using DB: " + process.env.DATABASE_URL);
 
 export * from './application';
 
