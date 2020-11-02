@@ -69,6 +69,7 @@ export class Oauth2Controller {
     };
     console.log(profile);
     request.session.user = profile;
+    response.setHeader('x-user-data', JSON.stringify(profile));
     response.redirect('https://flexin.io/auth/account');
     return response;
   }
