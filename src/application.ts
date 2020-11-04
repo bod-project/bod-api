@@ -33,6 +33,7 @@ import {
 import {
   Oauth2AuthStrategy,
   GoogleOauth2Authentication,
+  SessionStrategy,
 } from './authentication-strategies';
 import {
   CustomOauth2,
@@ -139,6 +140,7 @@ export class BodApiApplication extends BootMixin(
     // LoopBack 4 style authentication strategies
     this.add(createBindingFromClass(GoogleOauth2Authentication));
     this.add(createBindingFromClass(Oauth2AuthStrategy));
+    this.add(createBindingFromClass(SessionStrategy));
     // Express style middleware interceptors
     this.bind('passport-init-mw').to(toInterceptor(passport.initialize()));
     this.bind('passport-session-mw').to(toInterceptor(passport.session()));
