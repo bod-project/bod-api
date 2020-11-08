@@ -3,15 +3,15 @@
 // This file is licensed under the MIT License.
 // License text available at https://opensource.org/licenses/MIT
 
-import {
-  get,
-  RestBindings,
-  Response,
-  RequestWithSession,
-  param,
-} from '@loopback/rest';
 import {authenticate, AuthenticationBindings} from '@loopback/authentication';
 import {inject} from '@loopback/core';
+import {
+  get,
+  param,
+  RequestWithSession,
+  Response,
+  RestBindings,
+} from '@loopback/rest';
 import {SecurityBindings, UserProfile} from '@loopback/security';
 import {oAuth2InterceptExpressMiddleware} from '../authentication-interceptors/types';
 
@@ -64,13 +64,8 @@ export class Oauth2Controller {
     @inject(RestBindings.Http.REQUEST) request: RequestWithSession,
     @inject(RestBindings.Http.RESPONSE) response: Response,
   ) {
-    const profile = {
-      ...user.profile,
-    };
-    console.log(profile);
-    request.session.user = profile;
-    response.setHeader('x-user-data', JSON.stringify(profile));
-    response.redirect('https://flexin.io/auth/account');
+    const jwt = user.profile.profile;
+    response.redirect(`https://flexin.io/auth/account/${jwt}`);
     return response;
   }
 }
