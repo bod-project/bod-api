@@ -3,11 +3,12 @@
 // This file is licensed under the MIT License.
 // License text available at https://opensource.org/licenses/MIT
 
-import axios from 'axios';
-import {Profile} from 'passport';
 import {UserIdentityService} from '@loopback/authentication';
+import {securityId, UserProfile} from '@loopback/security';
+import axios from 'axios';
+import {sign} from 'jsonwebtoken';
+import {Profile} from 'passport';
 import {User} from '../models';
-import {UserProfile, securityId} from '@loopback/security';
 
 export type ProfileFunction = (
   accessToken: string,
@@ -66,11 +67,21 @@ export const verifyFunctionFactory = function (
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     done: (error: any, user?: any, info?: any) => void,
   ) {
+    /**
+     * TODO: jwt goes here then added to the user
+     */
+    const secret =
+      'rZgD+Rgw5khvyCfrziJKsKW3nodYp5CPusyPs8efAE0dz+W8Lp4UIujxHOriV97PhDXDAq2ZBvVhUq/U2x7dSYVfxYlltxyMZDGBKXk3YB0CY6WgXMD6kDntdKnVExmQ7solsk1J7k/IGzjbSBMTddQykeVF37aje9xLAr2eScJqAwQln5TOshA9NOhhdRJls30UBth4LnApTE+rnPl5VS/uq6QD5u+nXMUZUnL7RtxBqxqyn/IEo3lEBRTnOrRBWq2ZCFAZJ4/Lfc44zf4GKAgTgS63+D7FuWvdMeP+7L7kCu+AC/+yImW96IUO06OnQ0lXTGezXwxkyTobmYUNrg==';
+
+    const jwt = sign({id: profile.id, provider: 'google'}, secret, {
+      expiresIn: 3600,
+    });
+
     // look up a linked user for the profile
     userService
       .findOrCreateUser(profile)
       .then((user: User) => {
-        done(null, user);
+        done(null, {profile: jwt});
       })
       .catch((err: Error) => {
         done(err);
