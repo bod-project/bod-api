@@ -32,6 +32,12 @@ import {
 } from './authentication-strategy-providers';
 import {PassportUserIdentityService, UserServiceBindings} from './services';
 import passport from 'passport';
+import {
+  JWTAuthenticationComponent,
+  SECURITY_SCHEME_SPEC,
+  TokenServiceBindings,
+  RefreshTokenServiceBindings,
+} from '@loopback/authentication-jwt';
 // ----------------------
 // Added CrudRestComponent for User controller
 import {CrudRestComponent} from '@loopback/rest-crud';
@@ -57,6 +63,7 @@ export class BodApiApplication extends BootMixin(
     this.setUpBindings();
     this.component(AuthenticationComponent);
     this.component(CrudRestComponent);
+    this.component(JWTAuthenticationComponent);
 
     this.bind('googleOAuth2Options').to(oAuth2Providers['google-login']);
     this.bind('customOAuth2Options').to(oAuth2Providers['oauth2']);
@@ -95,6 +102,10 @@ export class BodApiApplication extends BootMixin(
   setUpBindings(): void {
     this.bind(UserServiceBindings.PASSPORT_USER_IDENTITY_SERVICE).toClass(
       PassportUserIdentityService,
+    );
+    // JWT
+    this.bind(TokenServiceBindings.TOKEN_SECRET).to(
+      'rZgD+Rgw5khvyCfrziJKsKW3nodYp5CPusyPs8efAE0dz+W8Lp4UIujxHOriV97PhDXDAq2ZBvVhUq/U2x7dSYVfxYlltxyMZDGBKXk3YB0CY6WgXMD6kDntdKnVExmQ7solsk1J7k/IGzjbSBMTddQykeVF37aje9xLAr2eScJqAwQln5TOshA9NOhhdRJls30UBth4LnApTE+rnPl5VS/uq6QD5u+nXMUZUnL7RtxBqxqyn/IEo3lEBRTnOrRBWq2ZCFAZJ4/Lfc44zf4GKAgTgS63+D7FuWvdMeP+7L7kCu+AC/+yImW96IUO06OnQ0lXTGezXwxkyTobmYUNrg==',
     );
     // passport strategies
     this.add(createBindingFromClass(GoogleOauth, {key: 'googleStrategy'}));
