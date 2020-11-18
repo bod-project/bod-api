@@ -3,7 +3,11 @@
 // This file is licensed under the MIT License.
 // License text available at https://opensource.org/licenses/MIT
 
-import {authenticate, AuthenticationBindings} from '@loopback/authentication';
+import {
+  authenticate,
+  AuthenticationBindings,
+  TokenService,
+} from '@loopback/authentication';
 import {inject} from '@loopback/core';
 import {
   get,
@@ -14,6 +18,7 @@ import {
 } from '@loopback/rest';
 import {SecurityBindings, UserProfile} from '@loopback/security';
 import {oAuth2InterceptExpressMiddleware} from '../authentication-interceptors/types';
+import {TokenServiceBindings} from '@loopback/authentication-jwt';
 
 /**
  * Login controller for third party oauth provider
@@ -24,7 +29,10 @@ import {oAuth2InterceptExpressMiddleware} from '../authentication-interceptors/t
  * The method thirdPartyCallBack uses the passport strategies as express middleware
  */
 export class Oauth2Controller {
-  constructor() {}
+  constructor(
+    @inject(TokenServiceBindings.TOKEN_SERVICE)
+    public jwtService: TokenService,
+  ) {}
 
   @authenticate('oauth2')
   @get('/auth/thirdparty/{provider}')
@@ -64,7 +72,8 @@ export class Oauth2Controller {
     @inject(RestBindings.Http.REQUEST) request: RequestWithSession,
     @inject(RestBindings.Http.RESPONSE) response: Response,
   ) {
-    const jwt = user.profile.profile;
+    const jwt = await this.jwtService.generateToken(user);
+    console.log('jwt', jwt);
     response.redirect(`https://flexin.io/auth/account/${jwt}`);
     return response;
   }

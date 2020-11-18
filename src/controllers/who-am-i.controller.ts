@@ -22,8 +22,12 @@ export class WhoAmIController {
 
   @authenticate('jwt')
   @get('/whoami')
-  whoAmI(): string {
-    return this.user[securityId];
+  async whoAmI(): Promise<object> {
+    // return this.user[securityId];
+    const userProfile = await this.userRepository.findById(
+      parseInt(this.user[securityId]),
+    );
+    return userProfile;
   }
 
   @get('/hello')
