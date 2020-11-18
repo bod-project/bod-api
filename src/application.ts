@@ -60,10 +60,10 @@ export class BodApiApplication extends BootMixin(
     oAuth2Providers['google-login'].clientID = process.env.CLIENT_ID;
     oAuth2Providers['google-login'].clientSecret = process.env.CLIENT_SECRET;
 
-    this.setUpBindings();
     this.component(AuthenticationComponent);
     this.component(CrudRestComponent);
     this.component(JWTAuthenticationComponent);
+    this.setUpBindings();
 
     this.bind('googleOAuth2Options').to(oAuth2Providers['google-login']);
     this.bind('customOAuth2Options').to(oAuth2Providers['oauth2']);

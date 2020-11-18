@@ -76,6 +76,7 @@ export const verifyFunctionFactory = function (
     const jwt = sign({id: profile.id, provider: 'google'}, secret, {
       expiresIn: 3600,
     });
+    console.log(jwt);
 
     // look up a linked user for the profile
     userService
